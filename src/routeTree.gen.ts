@@ -10,33 +10,217 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as ControlRouteImport } from './routes/control'
+import { Route as OpsRouteRouteImport } from './routes/ops/route'
+import { Route as RideRouteRouteImport } from './routes/ride/route'
+import { Route as OpsIndexRouteImport } from './routes/ops/index'
+import { Route as OpsAboutRouteImport } from './routes/ops/about'
+import { Route as OpsActivityRouteImport } from './routes/ops/activity'
+import { Route as OpsAlgorithmsRouteImport } from './routes/ops/algorithms'
+import { Route as OpsComplexityRouteImport } from './routes/ops/complexity'
+import { Route as OpsDriversRouteImport } from './routes/ops/drivers'
+import { Route as OpsQueueRouteImport } from './routes/ops/queue'
+import { Route as RideIndexRouteImport } from './routes/ride/index'
+import { Route as RideBookRouteImport } from './routes/ride/book'
+import { Route as RideProfileRouteImport } from './routes/ride/profile'
+import { Route as RideRidesRouteImport } from './routes/ride/rides'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlRoute = ControlRouteImport.update({
+  id: '/control',
+  path: '/control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpsRouteRoute = OpsRouteRouteImport.update({
+  id: '/ops',
+  path: '/ops',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RideRouteRoute = RideRouteRouteImport.update({
+  id: '/ride',
+  path: '/ride',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OpsIndexRoute = OpsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsAboutRoute = OpsAboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsActivityRoute = OpsActivityRouteImport.update({
+  id: '/activity',
+  path: '/activity',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsAlgorithmsRoute = OpsAlgorithmsRouteImport.update({
+  id: '/algorithms',
+  path: '/algorithms',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsComplexityRoute = OpsComplexityRouteImport.update({
+  id: '/complexity',
+  path: '/complexity',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsDriversRoute = OpsDriversRouteImport.update({
+  id: '/drivers',
+  path: '/drivers',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const OpsQueueRoute = OpsQueueRouteImport.update({
+  id: '/queue',
+  path: '/queue',
+  getParentRoute: () => OpsRouteRoute,
+} as any)
+const RideIndexRoute = RideIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => RideRouteRoute,
+} as any)
+const RideBookRoute = RideBookRouteImport.update({
+  id: '/book',
+  path: '/book',
+  getParentRoute: () => RideRouteRoute,
+} as any)
+const RideProfileRoute = RideProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => RideRouteRoute,
+} as any)
+const RideRidesRoute = RideRidesRouteImport.update({
+  id: '/rides',
+  path: '/rides',
+  getParentRoute: () => RideRouteRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ops': typeof OpsRouteRouteWithChildren
+  '/ride': typeof RideRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/control': typeof ControlRoute
+  '/ops/about': typeof OpsAboutRoute
+  '/ops/activity': typeof OpsActivityRoute
+  '/ops/algorithms': typeof OpsAlgorithmsRoute
+  '/ops/complexity': typeof OpsComplexityRoute
+  '/ops/drivers': typeof OpsDriversRoute
+  '/ops/queue': typeof OpsQueueRoute
+  '/ride/book': typeof RideBookRoute
+  '/ride/profile': typeof RideProfileRoute
+  '/ride/rides': typeof RideRidesRoute
+  '/ops/': typeof OpsIndexRoute
+  '/ride/': typeof RideIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/control': typeof ControlRoute
+  '/ops/about': typeof OpsAboutRoute
+  '/ops/activity': typeof OpsActivityRoute
+  '/ops/algorithms': typeof OpsAlgorithmsRoute
+  '/ops/complexity': typeof OpsComplexityRoute
+  '/ops/drivers': typeof OpsDriversRoute
+  '/ops/queue': typeof OpsQueueRoute
+  '/ride/book': typeof RideBookRoute
+  '/ride/profile': typeof RideProfileRoute
+  '/ride/rides': typeof RideRidesRoute
+  '/ops': typeof OpsIndexRoute
+  '/ride': typeof RideIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ops': typeof OpsRouteRouteWithChildren
+  '/ride': typeof RideRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/control': typeof ControlRoute
+  '/ops/about': typeof OpsAboutRoute
+  '/ops/activity': typeof OpsActivityRoute
+  '/ops/algorithms': typeof OpsAlgorithmsRoute
+  '/ops/complexity': typeof OpsComplexityRoute
+  '/ops/drivers': typeof OpsDriversRoute
+  '/ops/queue': typeof OpsQueueRoute
+  '/ride/book': typeof RideBookRoute
+  '/ride/profile': typeof RideProfileRoute
+  '/ride/rides': typeof RideRidesRoute
+  '/ops/': typeof OpsIndexRoute
+  '/ride/': typeof RideIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/ops'
+    | '/ride'
+    | '/auth'
+    | '/control'
+    | '/ops/about'
+    | '/ops/activity'
+    | '/ops/algorithms'
+    | '/ops/complexity'
+    | '/ops/drivers'
+    | '/ops/queue'
+    | '/ride/book'
+    | '/ride/profile'
+    | '/ride/rides'
+    | '/ops/'
+    | '/ride/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/control'
+    | '/ops/about'
+    | '/ops/activity'
+    | '/ops/algorithms'
+    | '/ops/complexity'
+    | '/ops/drivers'
+    | '/ops/queue'
+    | '/ride/book'
+    | '/ride/profile'
+    | '/ride/rides'
+    | '/ops'
+    | '/ride'
+  id:
+    | '__root__'
+    | '/'
+    | '/ops'
+    | '/ride'
+    | '/auth'
+    | '/control'
+    | '/ops/about'
+    | '/ops/activity'
+    | '/ops/algorithms'
+    | '/ops/complexity'
+    | '/ops/drivers'
+    | '/ops/queue'
+    | '/ride/book'
+    | '/ride/profile'
+    | '/ride/rides'
+    | '/ops/'
+    | '/ride/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  OpsRouteRoute: typeof OpsRouteRouteWithChildren
+  RideRouteRoute: typeof RideRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  ControlRoute: typeof ControlRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +232,162 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/control': {
+      id: '/control'
+      path: '/control'
+      fullPath: '/control'
+      preLoaderRoute: typeof ControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ops': {
+      id: '/ops'
+      path: '/ops'
+      fullPath: '/ops'
+      preLoaderRoute: typeof OpsRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ride': {
+      id: '/ride'
+      path: '/ride'
+      fullPath: '/ride'
+      preLoaderRoute: typeof RideRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ops/': {
+      id: '/ops/'
+      path: '/'
+      fullPath: '/ops/'
+      preLoaderRoute: typeof OpsIndexRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/about': {
+      id: '/ops/about'
+      path: '/about'
+      fullPath: '/ops/about'
+      preLoaderRoute: typeof OpsAboutRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/activity': {
+      id: '/ops/activity'
+      path: '/activity'
+      fullPath: '/ops/activity'
+      preLoaderRoute: typeof OpsActivityRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/algorithms': {
+      id: '/ops/algorithms'
+      path: '/algorithms'
+      fullPath: '/ops/algorithms'
+      preLoaderRoute: typeof OpsAlgorithmsRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/complexity': {
+      id: '/ops/complexity'
+      path: '/complexity'
+      fullPath: '/ops/complexity'
+      preLoaderRoute: typeof OpsComplexityRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/drivers': {
+      id: '/ops/drivers'
+      path: '/drivers'
+      fullPath: '/ops/drivers'
+      preLoaderRoute: typeof OpsDriversRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ops/queue': {
+      id: '/ops/queue'
+      path: '/queue'
+      fullPath: '/ops/queue'
+      preLoaderRoute: typeof OpsQueueRouteImport
+      parentRoute: typeof OpsRouteRoute
+    }
+    '/ride/': {
+      id: '/ride/'
+      path: '/'
+      fullPath: '/ride/'
+      preLoaderRoute: typeof RideIndexRouteImport
+      parentRoute: typeof RideRouteRoute
+    }
+    '/ride/book': {
+      id: '/ride/book'
+      path: '/book'
+      fullPath: '/ride/book'
+      preLoaderRoute: typeof RideBookRouteImport
+      parentRoute: typeof RideRouteRoute
+    }
+    '/ride/profile': {
+      id: '/ride/profile'
+      path: '/profile'
+      fullPath: '/ride/profile'
+      preLoaderRoute: typeof RideProfileRouteImport
+      parentRoute: typeof RideRouteRoute
+    }
+    '/ride/rides': {
+      id: '/ride/rides'
+      path: '/rides'
+      fullPath: '/ride/rides'
+      preLoaderRoute: typeof RideRidesRouteImport
+      parentRoute: typeof RideRouteRoute
+    }
   }
 }
 
+interface OpsRouteRouteChildren {
+  OpsAboutRoute: typeof OpsAboutRoute
+  OpsActivityRoute: typeof OpsActivityRoute
+  OpsAlgorithmsRoute: typeof OpsAlgorithmsRoute
+  OpsComplexityRoute: typeof OpsComplexityRoute
+  OpsDriversRoute: typeof OpsDriversRoute
+  OpsQueueRoute: typeof OpsQueueRoute
+  OpsIndexRoute: typeof OpsIndexRoute
+}
+
+const OpsRouteRouteChildren: OpsRouteRouteChildren = {
+  OpsAboutRoute: OpsAboutRoute,
+  OpsActivityRoute: OpsActivityRoute,
+  OpsAlgorithmsRoute: OpsAlgorithmsRoute,
+  OpsComplexityRoute: OpsComplexityRoute,
+  OpsDriversRoute: OpsDriversRoute,
+  OpsQueueRoute: OpsQueueRoute,
+  OpsIndexRoute: OpsIndexRoute,
+}
+
+const OpsRouteRouteWithChildren = OpsRouteRoute._addFileChildren(
+  OpsRouteRouteChildren,
+)
+
+interface RideRouteRouteChildren {
+  RideBookRoute: typeof RideBookRoute
+  RideProfileRoute: typeof RideProfileRoute
+  RideRidesRoute: typeof RideRidesRoute
+  RideIndexRoute: typeof RideIndexRoute
+}
+
+const RideRouteRouteChildren: RideRouteRouteChildren = {
+  RideBookRoute: RideBookRoute,
+  RideProfileRoute: RideProfileRoute,
+  RideRidesRoute: RideRidesRoute,
+  RideIndexRoute: RideIndexRoute,
+}
+
+const RideRouteRouteWithChildren = RideRouteRoute._addFileChildren(
+  RideRouteRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  OpsRouteRoute: OpsRouteRouteWithChildren,
+  RideRouteRoute: RideRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  ControlRoute: ControlRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
