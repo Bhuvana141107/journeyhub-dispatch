@@ -141,6 +141,31 @@ class SimulationStore {
     return loadSurge(this.queue.size, this.availableCount);
   }
 
+  /**
+   * System-computed demand level — derived from LIVE simulation state:
+   *   pressure   = waiting rides ÷ available drivers
+   *   busyRatio  = busy drivers ÷ total drivers
+   * Riders never pick this manually. O(1)
+   */
+  get demandLevel(): DemandLevel {
+    const total = this.driverMap.size;
+    const available = this.availableCount;
+    const busyRatio = total > 0 ? (total - available) / total : 1;
+    const pressure = available > 0 ? this.queue.size / available : this.queue.size + 2;
+    const score = pressure + busyRatio * 1.5;
+    if (score >= 2.5) return "Very High";
+    if (score >= 1.2) return "High";
+    if (score >= 0.45) return "Normal";
+    return "Low";
+  }
+
+  /** Human readable reason for the current demand level. */
+  get demandReason(): string {
+    const total = this.driverMap.size;
+    const busy = total - this.availableCount;
+    return `${this.queue.size} waiting · ${this.availableCount} free / ${total} drivers (${busy} busy)`;
+  }
+
   quote(input: {
     pickup: Point;
     drop: Point;
